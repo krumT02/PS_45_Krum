@@ -13,7 +13,7 @@ namespace Welcome
             
             UserViewModel viewModel = new UserViewModel(user);
             Console.WriteLine(user.Password); Console.WriteLine(viewModel.Password);
-            viewModel.Password = "121232A";
+            viewModel.Password = "121232AAAA";
             Console.WriteLine(viewModel.Password);
             UserView view = new UserView(viewModel);
             view.Display();
