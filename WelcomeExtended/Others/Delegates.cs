@@ -19,7 +19,7 @@ namespace WelcomeExtended.Others
         {
             Console.WriteLine("- Delegates -");
             Console.WriteLine($"{error}");
-            Console.WriteLine("- Delegates -");
+            Console.WriteLine("- Delegates --");
         }
     }
 }
