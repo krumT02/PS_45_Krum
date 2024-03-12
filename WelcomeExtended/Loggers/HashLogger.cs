@@ -58,7 +58,7 @@ namespace WelcomeExtended.Loggers
             Console.WriteLine($"{formatter(state, exception)}");
             Console.WriteLine("- LOGGER -");
             Console.ResetColor();
-            _logMessages(eventId.Id) = message;
+            _logMessages[eventId.Id] = message;
 
 
         }
