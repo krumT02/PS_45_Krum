@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace WelcomeExtended.Loggers
 {
-    internal class HashLogger : ILogger
+    public class HashLogger : ILogger
     {
         private readonly ConcurrentDictionary<int, string> _logMessages;
         private readonly string _name;
@@ -22,13 +22,13 @@ namespace WelcomeExtended.Loggers
 
         public IDisposable? BeginScope<TState>(TState state) where TState : notnull
         {
-            throw new NotImplementedException();
+            
             return null;
         }
 
         public bool IsEnabled(LogLevel logLevel)
         {
-            throw new NotImplementedException();
+            
             return true;
         }
 

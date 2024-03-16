@@ -8,7 +8,7 @@ using WelcomeExtended.Loggers;
 
 namespace WelcomeExtended.Helpers
 {
-    internal static class LoggerHelper
+    public static class LoggerHelper
     {
         public static ILogger GetLogger(string CategoryName)
         {

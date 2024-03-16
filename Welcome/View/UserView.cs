@@ -7,7 +7,7 @@ using Welcome.ViewModel;
 
 namespace Welcome.View
 {
-    internal class UserView
+    public class UserView
     {
         private readonly UserViewModel _viewModel;
 
@@ -22,6 +22,9 @@ namespace Welcome.View
             Console.WriteLine($"Role: {_viewModel.Role}");
             Console.WriteLine($"Email: {_viewModel.Email}");
             Console.WriteLine($"Fac. Number: {_viewModel.Fac_Num}");
+        }
+        public void DisplayError() {
+            throw new Exception("Error");
         }
 
     }

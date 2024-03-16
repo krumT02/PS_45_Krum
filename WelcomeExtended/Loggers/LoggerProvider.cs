@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace WelcomeExtended.Loggers
 {
-    internal class LoggerProvider : ILoggerProvider
+    public class LoggerProvider : ILoggerProvider
     {
         public ILogger CreateLogger(string categoryName)
         {
-            throw new NotImplementedException();
+           
             return new HashLogger(categoryName);
         }
 

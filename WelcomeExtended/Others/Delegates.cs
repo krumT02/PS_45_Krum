@@ -8,7 +8,7 @@ using WelcomeExtended.Helpers;
 
 namespace WelcomeExtended.Others
 {
-    internal class Delegates
+    public class Delegates
     {
         public static readonly ILogger logger = LoggerHelper.GetLogger("Hello");
         public static void Log(string error)

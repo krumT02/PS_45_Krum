@@ -10,7 +10,7 @@ using Welcome.Others;
 namespace Welcome.ViewModel
 {
 
-    internal class UserViewModel
+    public class UserViewModel
     {
         private readonly User _user;
         public UserViewModel(User user) { _user = user; }
