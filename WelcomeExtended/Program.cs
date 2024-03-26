@@ -3,8 +3,7 @@ using Welcome.Model;
 using Welcome.ViewModel;
 using Welcome.View;
 using WelcomeExtended.Others;
-using WelcomeExtended.Loggers;
-using Serilog;
+
 
 namespace WelcomeExtended
 {
@@ -27,7 +26,7 @@ namespace WelcomeExtended
             }
             catch (Exception e) 
             {
-                var log = new ActionOnError(Log);
+                var log = new ActionOnError(Delegates.Log);
                 log(e.Message);
             }
             finally { Console.WriteLine("Executed in any case!"); }
