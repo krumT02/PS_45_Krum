@@ -29,7 +29,7 @@ namespace WelcomeExtended
                 var log = new ActionOnError(Delegates.Log);
                 log(e.Message);
             }
-            finally { Console.WriteLine("Executed in any case!"); }
+            finally { Console.WriteLine("Executed in any case! "); }
                 
         }
     }
