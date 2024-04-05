@@ -22,8 +22,8 @@ namespace Welcome.ViewModel
         }
         public string Password
         {
-            get { return _user.DeEncrypt(_user.Password); }
-            set { _user.Password = _user.Encrypt(value); }
+            get { return PasswordHelper.Decrypt(_user.Password); }
+            set { _user.Password = PasswordHelper.Encrypt(value); }
         }
         public UserRolesEnum Role
         {

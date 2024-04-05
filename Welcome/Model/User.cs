@@ -18,35 +18,15 @@ namespace Welcome.Model
         public DateTime Expires { get; set; }
 
 
-        public User(string Names, string Password, UserRolesEnum Role, string Email, string Fac_Num)
+        public User(string Names, string Password, UserRolesEnum Role )
         {
             this.Names = Names;
-            this.Password = Encrypt(Password);   
+            this.Password = PasswordHelper.Encrypt(Password);   
             this.Role = Role;   
-            this.Email = Email;
-            this.Fac_Num  = Fac_Num;
+           
         }
        
-        public string Encrypt(string Password)
-        {
-            char[] chars = Password.ToCharArray();
-            for(int i = 0; i < chars.Length; i++)
-            {
-                chars[i] = (char)(chars[i] + 1);
-            }
-            
-            return new string(chars);
-        }
-        public string DeEncrypt(string Password)
-        {
-            char[] chars = Password.ToCharArray();
-            for (int i = 0; i < chars.Length; i++)
-            {
-                chars[i] = (char)(chars[i] - 1);
-            }
-
-            return new string(chars);
-        }
+       
        
     }
 }

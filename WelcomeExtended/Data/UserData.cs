@@ -24,6 +24,7 @@ namespace WelcomeExtended.Data
         {
             user.id = _nextid++;
             _users.Add(user);
+            Console.WriteLine($"Добавен е потребител: {user.Names}. Общ брой потребители: {_users.Count}");
 
         }
         public void DeleteUser(User user)
@@ -33,10 +34,12 @@ namespace WelcomeExtended.Data
 
         public bool ValidateUser(string name, string password)
         {
-            foreach(var user in _users)
+            string encryptedPassword = PasswordHelper.Encrypt(password);
+            foreach (var user in _users)
             {
-                if(user.Names == name && user.Password == password)
+                if(user.Names == name && user.Password == encryptedPassword)
                 {
+                    Console.WriteLine(user.Names);
                     return true;
                 }
                 
@@ -45,19 +48,21 @@ namespace WelcomeExtended.Data
         }
         public bool ValidateUserLambda(string name,string password)
         {
-            return _users.Where(x => x.Names == name && x.Password == password).FirstOrDefault() != null ? true : false;
+            string encryptedPassword = PasswordHelper.Encrypt(password);
+            return _users.Where(x => x.Names == name && x.Password == encryptedPassword).FirstOrDefault() != null ? true : false;
         }
         public bool ValidateUserLinQ(string name, string password)
         {
+            string encryptedPassword = PasswordHelper.Encrypt(password);
             var ret = from user in _users
-                      where user.Names == name && user.Password == password
+                      where user.Names == name && user.Password == encryptedPassword
                       select user.id;
             return ret != null ? true : false;
         }
-        public User GetUser(string name, string password)
+        public User? GetUser(string name, string password)
         {
-
-            return _users.FirstOrDefault(z => z.Names == name && z.Password == password);
+            string encryptedPassword = PasswordHelper.Encrypt(password);
+            return _users.FirstOrDefault(z => z.Names.Equals(name, StringComparison.Ordinal) && z.Password.Equals(encryptedPassword, StringComparison.Ordinal));
         }
         public void AssignUserRoles(string name, UserRolesEnum role)
         {
@@ -73,5 +78,13 @@ namespace WelcomeExtended.Data
                 user.Expires = validUntil;
             }
         }
+        public void PrintAllUsers()
+        {
+            foreach (var user in _users)
+            {
+                Console.WriteLine($"Име: {user.Names}, Парола: {PasswordHelper.Decrypt(user.Password)}, Роля: {user.Role}");
+            }
+        }
+
     }
 }

@@ -3,7 +3,10 @@ using Welcome.Model;
 using Welcome.ViewModel;
 using Welcome.View;
 using WelcomeExtended.Others;
-
+using WelcomeExtended.Data;
+using System.Data;
+using System.Xml.Linq;
+using WelcomeExtended.Helpers;
 
 namespace WelcomeExtended
 {
@@ -14,13 +17,41 @@ namespace WelcomeExtended
             
             try
             {
-                var user = new User("John Smith", "1234567", UserRolesEnum.STUDENT, "Josh@abv.bg", "121221435");
-                var viewModel = new UserViewModel(user);
-                var view = new UserView(viewModel);
+                UserData userData = new UserData();
+                User studentUser = new User("Student", "123", UserRolesEnum.STUDENT);
+                User studentUser1 = new User("Student2", "123", UserRolesEnum.STUDENT);
+                User ProfessorUser = new User("Professor", "1234", UserRolesEnum.PROFESSOR);
+                User AdminUser = new User("Admin", "1235", UserRolesEnum.ADMIN);
 
-                view.Display();
+                userData.AddUser(studentUser);
+                userData.AddUser(studentUser1);
+                userData.AddUser(ProfessorUser);
+                userData.AddUser(AdminUser);
 
-                view.DisplayError();
+                Console.WriteLine("Enter UserName: ");
+                string UserName = Console.ReadLine();
+                Console.WriteLine("Enter Password: ");
+                string Password = Console.ReadLine();
+
+                if (UserHelpers.ValidateCredentials(userData,UserName, Password))
+                {
+                    // Потребителят съществува, извличане с GetUser и показване с ToStringExtension
+                    User user = userData.GetUser(UserName, Password);
+                    if (user != null)
+                    {
+                        Console.WriteLine(UserHelpers.ToString(user));
+                    }
+                    else
+                    {
+                        Console.WriteLine("Потребителят не е намерен.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Потребителят не е намерен или данните за вход са невалидни.");
+                }
+
+
 
 
             }
