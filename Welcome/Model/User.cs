@@ -14,17 +14,11 @@ namespace Welcome.Model
         public UserRolesEnum Role { get; set; }
         public string Email {get; set; }
         public string Fac_Num { get; set; }
-        public int id { get; set; }
+        public virtual int id { get; set; }
         public DateTime Expires { get; set; }
 
 
-        public User(string Names, string Password, UserRolesEnum Role )
-        {
-            this.Names = Names;
-            this.Password = PasswordHelper.Encrypt(Password);   
-            this.Role = Role;   
-           
-        }
+        
        
        
        

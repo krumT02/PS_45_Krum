@@ -18,13 +18,37 @@ namespace WelcomeExtended
             try
             {
                 UserData userData = new UserData();
-                User studentUser = new User("Student", "123", UserRolesEnum.STUDENT);
-                User studentUser1 = new User("Student2", "123", UserRolesEnum.STUDENT);
-                User ProfessorUser = new User("Professor", "1234", UserRolesEnum.PROFESSOR);
-                User AdminUser = new User("Admin", "1235", UserRolesEnum.ADMIN);
+                User studentUser = new User() 
+                {
+                    Names = "Student1",
+                    Password = "123",
+                    Role = UserRolesEnum.STUDENT
+                    
+                };
+                User student2User = new User()
+                {
+                    Names = "Student2",
+                    Password = "123",
+                    Role = UserRolesEnum.STUDENT
+
+                };
+                User ProfessorUser = new User()
+                {
+                    Names = "Professor",
+                    Password = "1234",
+                    Role = UserRolesEnum.PROFESSOR
+
+                };
+                User AdminUser = new User()
+                {
+                    Names = "Admin",
+                    Password = "12345",
+                    Role = UserRolesEnum.ADMIN
+
+                };
 
                 userData.AddUser(studentUser);
-                userData.AddUser(studentUser1);
+                userData.AddUser(student2User);
                 userData.AddUser(ProfessorUser);
                 userData.AddUser(AdminUser);
 

@@ -9,7 +9,12 @@ namespace Welcome
     {
         static void Main(string[] args)
         {
-            User user = new User("Ivan", "123456",UserRolesEnum.STUDENT) ;
+            User user = new User()
+            { 
+                Names = "Student1",
+                Password = "password",
+
+            } ;
             
             UserViewModel viewModel = new UserViewModel(user);
             Console.WriteLine(user.Password); Console.WriteLine(viewModel.Password);
