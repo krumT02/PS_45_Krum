@@ -15,6 +15,8 @@ namespace Welcome.Model
         public string Email {get; set; }
         public string Fac_Num { get; set; }
         public int id { get; set; }
+        public DateTime Expires { get; set; }
+
 
         public User(string Names, string Password, UserRolesEnum Role, string Email, string Fac_Num)
         {

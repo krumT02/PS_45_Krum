@@ -65,5 +65,13 @@ namespace WelcomeExtended.Data
             if (obj != null) obj.Role = role;
             
         }
+        public void SetActive(string name, DateTime validUntil)
+        {
+            var user = _users.FirstOrDefault(u => u.Names == name);
+            if (user != null)
+            {
+                user.Expires = validUntil;
+            }
+        }
     }
 }

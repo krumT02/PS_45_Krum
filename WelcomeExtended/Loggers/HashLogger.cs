@@ -62,5 +62,51 @@ namespace WelcomeExtended.Loggers
 
 
         }
+        public void PrintAllMessages()
+        {
+            foreach (var message in _logMessages)
+            {
+                Console.WriteLine($"Event ID: {message.Key}, Message: {message.Value}");
+            }
+        }
+
+        public void PrintMessageById(int eventId)
+        {
+            if (_logMessages.TryGetValue(eventId, out var message))
+            {
+                Console.WriteLine(message);
+            }
+            else
+            {
+                Console.WriteLine("Message not found.");
+            }
+        }
+
+        public void DeleteMessageById(int eventId)
+        {
+            _logMessages.TryRemove(eventId, out _);
+        }
+    }
+    public class FileLogger : ILogger
+    {
+        private readonly string _filePath;
+        private readonly string _name;
+
+        public FileLogger(string name, string filePath)
+        {
+            _name = name;
+            _filePath = filePath;
+        }
+
+        public IDisposable? BeginScope<TState>(TState state) where TState : notnull => null;
+
+        public bool IsEnabled(LogLevel logLevel) => true;
+
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+        {
+            var message = $"{DateTime.Now}: [{logLevel}] [{_name}] {formatter(state, exception)}\n";
+            File.AppendAllText(_filePath, message);
+        }
     }
 }
+
