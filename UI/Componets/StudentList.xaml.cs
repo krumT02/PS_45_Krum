@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayers.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace UI.Componets
         public StudentList()
         {
             InitializeComponent();
+            using (var context = new DatabaseContext())
+            {
+                var records = context.Users.ToList();
+                students.DataContext = records;
+            }
         }
     }
 }

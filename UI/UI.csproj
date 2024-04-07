@@ -7,4 +7,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayers\DataLayers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extras\" />
+  </ItemGroup>
+
 </Project>
