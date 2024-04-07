@@ -18,9 +18,10 @@ namespace DataLayers.DataBase
 
         public void Log(string message, string level)
         {
-            var logEntry = new LogEntry{ Message = message, Level = level };
+            var logEntry = new LogEntry{ Message = message, Level = level,Timestamp = DateTime.UtcNow };
             _context.Logs.Add(logEntry);
             _context.SaveChanges();
+            Console.WriteLine($"[{DateTime.UtcNow}] {level}: {message}");
         }
     }
 

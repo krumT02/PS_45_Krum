@@ -54,6 +54,8 @@ namespace DataLayers.DataBase
                 Expires = DateTime.Now.AddYears(7)
             };
             modelBuilder.Entity<DataBaseUser>().HasData(user);
+            modelBuilder.Entity<DataBaseUser>().HasData(user1);
+            modelBuilder.Entity<DataBaseUser>().HasData(user2);
         }
         public DbSet<DataBaseUser> Users { get; set; }
         public DbSet<LogEntry> Logs { get; set; }

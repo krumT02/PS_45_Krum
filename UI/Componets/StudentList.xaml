@@ -14,7 +14,7 @@
         <DataGrid Name="students" ItemsSource="{Binding}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="*" IsReadOnly="True" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Names" IsReadOnly="True" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Names}" />
                 <DataGridTextColumn Header="Role" IsReadOnly="True" Binding="{Binding Role}" />
                 <DataGridTextColumn Header="Password" Binding="{Binding Path=Password, Converter={StaticResource PasswordConverter}}"/>
                 <DataGridTextColumn Header="Expires In" Binding="{Binding Expires}"/>

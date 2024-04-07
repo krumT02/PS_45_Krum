@@ -10,27 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using UI.Windows;
+using DataLayers.Model;
+using DataLayers.DataBase;
 
-namespace UI
+namespace UI.Windows
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Logs.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Logs : Window
     {
-        public MainWindow()
+        public Logs()
         {
             InitializeComponent();
-        }
+            
 
-        private void ShowLogs_Click(object sender, RoutedEventArgs e)
-        {
-            Logs logsWindow = new Logs();
-            logsWindow.Show();
         }
-
+       
     }
 }

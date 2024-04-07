@@ -1,5 +1,6 @@
 ﻿using DataLayers.DataBase;
 using DataLayers.Model;
+using Microsoft.Extensions.Logging;
 
 namespace DataLayers
 {
@@ -13,17 +14,9 @@ namespace DataLayers
         {
             using (var context = new DatabaseContext()) 
             {
+                var logger = new Logger(context);
                 context.Database.EnsureCreated();
-                context.Add<DataBaseUser>(new DataBaseUser()
-                {
-                    Names = "user",
-                    Password = "password",
-                    Email = "email",
-                    Fac_Num = " ",
-                    Expires = DateTime.Now,
-                    Role = Welcome.Others.UserRolesEnum.STUDENT
-                });
-                context.SaveChanges();
+              
                 var users = context.Users.ToList();
                 Console.WriteLine("Въведете потребителско име:");
                 string userName = Console.ReadLine();
@@ -36,10 +29,11 @@ namespace DataLayers
                 if (isValidUser)
                 {
                     Console.WriteLine("Валиден потребител");
+                    logger.Log($"Влязал: {userName}", "Info");
                     bool isAdmin = context.Users.Any(z => z.Role == Welcome.Others.UserRolesEnum.ADMIN);
                     if (isAdmin)
                     {
-                        AdminMenu(context); 
+                        AdminMenu(context,logger); 
                     }
                 }
                 else
@@ -50,10 +44,10 @@ namespace DataLayers
             }
 
         }
-        public static void AdminMenu(DatabaseContext context)
+        public static void AdminMenu(DatabaseContext context, Logger logger)
         {
             {
-                var logger = new Logger(context);
+                
 
                 while (true)
                 {
@@ -69,10 +63,12 @@ namespace DataLayers
                     {
                         case "1":
                             var users = context.Users.ToList();
+                            
                             foreach (var user in users)
                             {
                                 Console.WriteLine($"{user.id} - {user.Names}");
                             }
+
                             break;
                         case "2":
                             Console.Write("Въведете име: ");
